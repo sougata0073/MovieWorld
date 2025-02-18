@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MovieWorld</string>
+    <string name="home">Home</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla blandit leo et dignissim. Ut egestas sapien id risus malesuada, ac tempus metus tempus. Mauris pellentesque eu massa faucibus tristique. In egestas venenatis lacinia. Sed eget orci vitae felis tempus commodo. Vestibulum blandit, mauris et fringilla mattis, justo massa dictum eros, eu consectetur ligula neque ac arcu. Integer bibendum tincidunt sem et dapibus. Fusce aliquam venenatis libero, at euismod arcu imperdiet eget. Ut pharetra fringilla ex eu viverra. Sed sit amet ex cursus, semper felis sed, efficitur sem. Vestibulum porta vehicula mi, ac posuere odio porttitor at.
+
+Vivamus a rhoncus mauris. Maecenas sapien lorem, placerat et tincidunt vel, eleifend a justo. Sed ipsum eros, viverra suscipit dictum et, mollis vitae dui. Morbi rutrum lacus vitae finibus rhoncus. Ut in nunc non urna accumsan porta. Etiam hendrerit a est sed dictum. In eu ex rhoncus, volutpat purus quis, lobortis erat. Nam at lacus arcu.
+
+Praesent aliquet urna nibh, commodo sollicitudin libero dictum sed. Sed diam augue, feugiat nec lorem at, molestie eleifend elit. Suspendisse justo neque, maximus eget lacinia vel, volutpat vitae massa. Vestibulum consequat semper mi, vel consequat mi. Suspendisse potenti. Nunc congue elementum ipsum eu laoreet. Pellentesque tincidunt risus a felis euismod, sed suscipit ex rhoncus. Nunc semper, velit ac consequat hendrerit, neque nulla sodales elit, in pellentesque dui justo et tortor. Proin tristique tellus a leo egestas efficitur. Nulla porta dictum ligula id molestie. Donec tempus non orci at accumsan. In hac habitasse platea dictumst. Cras dapibus lacus sit amet lacinia efficitur.
+
+Nunc sit amet magna eu velit efficitur tempus. Curabitur egestas nisl quis leo egestas viverra. Proin accumsan, orci in semper lobortis, lorem ligula viverra ex, aliquet iaculis libero leo a nisi. Aliquam tristique aliquam aliquam. Quisque aliquam mauris id libero maximus ultricies. Quisque laoreet sem a pharetra ultricies. Sed auctor, elit non malesuada congue, dui nisl ultricies leo, sed tempus leo elit ut nisl. Etiam auctor bibendum viverra.
+
+Sed ultricies ullamcorper lacus, id tincidunt nisi tristique id. Nullam rutrum sed lorem sed luctus. Donec sit amet felis commodo, posuere sem et, blandit tortor. Nullam vel lobortis ipsum. Donec ullamcorper vestibulum nulla vitae bibendum. Proin dui est, dictum et vehicula sed, faucibus id ligula. Fusce ac quam consectetur justo pellentesque hendrerit eu id arcu. Vestibulum congue sem sed arcu ultricies dignissim. Nullam interdum, nisl at facilisis maximus, sapien nisi imperdiet dui, vitae gravida nisl nibh vitae mi. Donec pharetra mi in sapien pharetra pulvinar. Etiam iaculis nisl vitae justo aliquet, eget lacinia leo porttitor. Morbi rutrum sollicitudin ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer luctus placerat nibh et dignissim.</string>
+
+</resources>

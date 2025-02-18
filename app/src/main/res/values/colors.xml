@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="always_black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="always_white">#FFFFFFFF</color>
+    <color name="grey">#808080</color>
+    <color name="light_grey">#30212121</color>
+    <color name="violet">#6A3DE8</color>
+    <color name="card_bg">#FFFFFFFF</color>
+    <color name="green">#34A853</color>
+    <color name="yellow">#FFD400</color>
+    <color name="profile_details_bg">#E6E6FA</color>
+</resources>

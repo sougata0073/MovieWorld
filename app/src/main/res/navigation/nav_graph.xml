@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sougata.movieworld.home.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_genreListFragment"
+            app:destination="@id/genreListFragment"
+            app:enterAnim="@anim/popup_enter"
+            app:exitAnim="@anim/popup_exit"
+            app:popEnterAnim="@anim/popup_enter_back"
+            app:popExitAnim="@anim/popup_exit_back" />
+        <action
+            android:id="@+id/action_homeFragment_to_anyMovieListFragment"
+            app:destination="@id/anyMovieListFragment"
+            app:enterAnim="@anim/popup_enter"
+            app:exitAnim="@anim/popup_exit"
+            app:popEnterAnim="@anim/popup_enter_back"
+            app:popExitAnim="@anim/popup_exit_back" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/popup_enter"
+            app:exitAnim="@anim/popup_exit"
+            app:popEnterAnim="@anim/popup_enter_back"
+            app:popExitAnim="@anim/popup_exit_back" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="com.sougata.movieworld.watchList.fragments.WatchListFragment"
+        android:label="fragment_watch_list"
+        tools:layout="@layout/fragment_watch_list" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.sougata.movieworld.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment"
+            app:enterAnim="@anim/popup_enter"
+            app:exitAnim="@anim/popup_exit"
+            app:popEnterAnim="@anim/popup_enter_back"
+            app:popExitAnim="@anim/popup_exit_back" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreListFragment"
+        android:name="com.sougata.movieworld.home.fragments.GenreListFragment"
+        android:label="GenreListFragment"
+        tools:layout="@layout/fragment_genre_list">
+        <action
+            android:id="@+id/action_genreListFragment_to_anyMovieListFragment"
+            app:destination="@id/anyMovieListFragment"
+            app:enterAnim="@anim/popup_enter"
+            app:exitAnim="@anim/popup_exit"
+            app:popEnterAnim="@anim/popup_enter_back"
+            app:popExitAnim="@anim/popup_exit_back" />
+    </fragment>
+    <fragment
+        android:id="@+id/anyMovieListFragment"
+        android:name="com.sougata.movieworld.anyMovieList.AnyMovieListFragment"
+        android:label="AnyMovieListFragment"
+        tools:layout="@layout/fragment_any_movie_list" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sougata.movieworld.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sougata.movieworld.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="com.sougata.movieworld.profile.AddUserFragment"
+        android:label="AddUserFragment"
+        tools:layout="@layout/fragment_add_user" />
+
+</navigation>
