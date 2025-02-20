@@ -2,6 +2,7 @@ package com.sougata.movieworld.util
 
 import androidx.lifecycle.MutableLiveData
 import com.github.javafaker.Faker
+import com.sougata.movieworld.models.Genre
 import com.sougata.movieworld.models.MyMovie
 import com.sougata.movieworld.models.PopularList
 import java.text.DecimalFormat
@@ -9,37 +10,38 @@ import kotlin.random.Random
 
 object InputUtil {
 
-    fun getAllGenreNames() =
+    fun getAllGenresList() =
         listOf(
-            "Action",
-            "Adult",
-            "Adventure",
-            "Animation",
-            "Biography",
-            "Comedy",
-            "Crime",
-            "Documentary",
-            "Drama",
-            "Family",
-            "Fantasy",
-            "Film-Noir",
-            "Game-Show",
-            "History",
-            "Horror",
-            "Music",
-            "Musical",
-            "Mystery",
-            "News",
-            "Reality-TV",
-            "Romance",
-            "Sci-Fi",
-            "Short",
-            "Sport",
-            "Talk-Show",
-            "Thriller",
-            "War",
-            "Western"
+            Genre("Action"),
+            Genre("Adult"),
+            Genre("Adventure"),
+            Genre("Animation"),
+            Genre("Biography"),
+            Genre("Comedy"),
+            Genre("Crime"),
+            Genre("Documentary"),
+            Genre("Drama"),
+            Genre("Family"),
+            Genre("Fantasy"),
+            Genre("Film-Noir"),
+            Genre("Game-Show"),
+            Genre("History"),
+            Genre("Horror"),
+            Genre("Music"),
+            Genre("Musical"),
+            Genre("Mystery"),
+            Genre("News"),
+            Genre("Reality-TV"),
+            Genre("Romance"),
+            Genre("Sci-Fi"),
+            Genre("Short"),
+            Genre("Sport"),
+            Genre("Talk-Show"),
+            Genre("Thriller"),
+            Genre("War"),
+            Genre("Western")
         )
+
 
     fun getAllListNames() =
         listOf(

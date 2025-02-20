@@ -1,7 +1,6 @@
 package com.sougata.movieworld.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,7 @@ import com.sougata.movieworld.models.MyMovie
 import com.sougata.movieworld.models.SearchHistory
 import com.sougata.movieworld.retrofit.MovieService
 import com.sougata.movieworld.retrofit.RetrofitInstance
+import com.sougata.movieworld.search.adapters.SearchSuggestionListAdapter
 import com.sougata.movieworld.search.viewModels.SearchFragmentViewModel
 import com.sougata.movieworld.search.viewModels.ViewModelFactory
 import com.sougata.movieworld.database.Repository as RoomRepository
@@ -73,7 +73,7 @@ class SearchFragment : Fragment() {
 
         this.retrofitRepository = RetrofitRepository(this.movieService)
 
-        this.viewModel = ViewModelProvider.create(
+        this.viewModel = ViewModelProvider(
             this,
             ViewModelFactory(this.retrofitRepository, this.roomRepository)
         )[SearchFragmentViewModel::class.java]

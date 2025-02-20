@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         this.repository = Repository(this.movieService)
 
         this.viewModel =
-            ViewModelProvider.create(
+            ViewModelProvider(
                 this,
                 ViewModelFactory(this.repository)
             )[HomeFragmentViewModel::class.java]

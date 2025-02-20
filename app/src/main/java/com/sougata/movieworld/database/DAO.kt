@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.sougata.movieworld.models.Genre
 import com.sougata.movieworld.models.MyMovie
 import com.sougata.movieworld.models.SearchHistory
 import com.sougata.movieworld.models.User
@@ -20,6 +21,9 @@ interface DAO {
 
     @Insert
     suspend fun insertWatchlistMovie(watchlistMovie: WatchlistMovie)
+
+    @Insert
+    suspend fun insertUserLikedGenre(genre: Genre)
 
     @Query(
         """
@@ -56,7 +60,15 @@ interface DAO {
     @Query("delete from watchlist_movie_details where imdb_id = :imdbId")
     suspend fun deleteWatchlistMovie(imdbId: String)
 
-    @Query("select exists(select * from watchlist_movie_details where imdb_id = :imdbId)")
+    @Query(
+        """select exists (
+        select * from watchlist_movie_details 
+        where imdb_id = :imdbId and 
+        user_id = (
+            select id from user_details where is_active = 1 limit 1
+            )
+        )"""
+    )
     suspend fun getIsInWatchlist(imdbId: String): Boolean
 
     @Update
@@ -73,5 +85,22 @@ interface DAO {
 
     @Query("select count(id) from user_details")
     fun getUserCount(): Int
+
+    @Query("update user_details set is_active = 0")
+    suspend fun deactivateAllUsers()
+
+    @Query("select * from user_details where is_active = 1 limit 1")
+    suspend fun getActiveUser(): User
+
+    @Query(
+        """
+        select * from user_liked_genre_details
+        where user_id = (select id from user_details where is_active = 1 limit 1)
+        """
+    )
+    fun getActiveUserLikedGenreList(): LiveData<List<Genre>>
+
+    @Update
+    suspend fun updateUser(user: User)
 
 }

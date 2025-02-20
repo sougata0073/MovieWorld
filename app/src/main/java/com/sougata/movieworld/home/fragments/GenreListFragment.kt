@@ -43,7 +43,7 @@ class GenreListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
 
             adapter =
-                ScaleInAnimationAdapter(GenreListAdapter(InputUtil.getAllGenreNames())).apply {
+                ScaleInAnimationAdapter(GenreListAdapter(InputUtil.getAllGenresList())).apply {
                     setFirstOnly(false)
                     setDuration(150)
                 }

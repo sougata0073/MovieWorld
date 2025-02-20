@@ -2,6 +2,7 @@ package com.sougata.movieworld.database
 
 import android.database.sqlite.SQLiteException
 import androidx.lifecycle.LiveData
+import com.sougata.movieworld.models.Genre
 import com.sougata.movieworld.models.MyMovie
 import com.sougata.movieworld.models.SearchHistory
 import com.sougata.movieworld.models.User
@@ -31,6 +32,10 @@ class Repository(private val dao: DAO) {
 
         this.dao.insertWatchlistMovie(watchlistMovie)
 
+    }
+
+    suspend fun insertUserLikedGenre(genre: Genre) {
+        this.dao.insertUserLikedGenre(genre)
     }
 
     fun getAllUsers(): LiveData<List<User>> {
@@ -75,6 +80,22 @@ class Repository(private val dao: DAO) {
 
     fun getUserCount(): Int {
         return this.dao.getUserCount()
+    }
+
+    suspend fun deactivateAllUsers() {
+        this.dao.deactivateAllUsers()
+    }
+
+    suspend fun getActiveUser(): User {
+        return this.dao.getActiveUser()
+    }
+
+    fun getActiveUserLikedGenreList(): LiveData<List<Genre>> {
+        return this.dao.getActiveUserLikedGenreList()
+    }
+
+    suspend fun updateUser(user: User) {
+        this.dao.updateUser(user)
     }
 
 }

@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.sougata.movieworld.models.Genre
 import com.sougata.movieworld.models.SearchHistory
 import com.sougata.movieworld.models.User
 import com.sougata.movieworld.models.WatchlistMovie
 
 
 @Database(
-    entities = [User::class, WatchlistMovie::class, SearchHistory::class], version = 1
+    entities = [User::class, WatchlistMovie::class, SearchHistory::class, Genre::class], version = 1
 )
 abstract class MyDatabase : RoomDatabase() {
 

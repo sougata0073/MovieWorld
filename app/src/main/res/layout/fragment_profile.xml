@@ -4,11 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sougata.movieworld.profile.viewModels.ProfileFragmentViewModel" />
+
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
-        tools:context=".profile.ProfileFragment">
+        android:fitsSystemWindows="true"
+        tools:context=".profile.fragments.ProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,21 +35,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
+                android:id="@+id/switchUserBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="5dp"
+                android:text="Switch user"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/profileHeading"
+                app:layout_constraintEnd_toStartOf="@id/addUserBtn"
+                app:layout_constraintTop_toTopOf="@+id/profileHeading" />
+
+            <TextView
                 android:id="@+id/addUserBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{viewModel::onAddUserClicked}"
+                android:padding="5dp"
                 android:text="Add user"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                app:icon="@drawable/ic_plus"
-                app:iconSize="20dp"
-                app:iconTint="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/profileHeading"
+                app:layout_constraintBottom_toBottomOf="@+id/switchUserBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/profileHeading" />
+                app:layout_constraintTop_toTopOf="@+id/switchUserBtn" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileIV"
@@ -60,13 +87,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Sougata Saha"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/profileIV"
                 app:layout_constraintStart_toStartOf="@+id/profileIV"
-                app:layout_constraintTop_toBottomOf="@+id/profileIV" />
+                app:layout_constraintTop_toBottomOf="@+id/profileIV"
+                tools:text="Sougata Saha" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/editBtn"
@@ -139,14 +166,14 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="sahasougata459@gmail.com"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/emailLabelTV"
                     app:layout_constraintEnd_toEndOf="@+id/birthdayTV"
                     app:layout_constraintStart_toStartOf="@+id/birthdayTV"
-                    app:layout_constraintTop_toTopOf="@id/emailLabelTV" />
+                    app:layout_constraintTop_toTopOf="@id/emailLabelTV"
+                    tools:text="sahasougata459@gmail.com" />
 
                 <TextView
                     android:id="@+id/birthdayTV"
@@ -156,14 +183,14 @@
                     android:layout_marginEnd="20dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="30-04-2002"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/birthdayLabelTV"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/birthdayLabelTV"
-                    app:layout_constraintTop_toTopOf="@id/birthdayLabelTV" />
+                    app:layout_constraintTop_toTopOf="@id/birthdayLabelTV"
+                    tools:text="30-04-2002" />
 
                 <TextView
                     android:id="@+id/countryTV"
@@ -171,14 +198,15 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="India"
+                    android:text="@{viewModel.activeUser.country.toString()}"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/countryLabelTV"
                     app:layout_constraintEnd_toEndOf="@+id/birthdayTV"
                     app:layout_constraintStart_toStartOf="@+id/birthdayTV"
-                    app:layout_constraintTop_toTopOf="@id/countryLabelTV" />
+                    app:layout_constraintTop_toTopOf="@id/countryLabelTV"
+                    tools:text="India" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,13 +226,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/interestedGenreRV"
                 android:layout_width="0dp"
-                tools:listitem="@layout/user_liked_genre_list_item"
-                tools:itemCount="1"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/interestedInLabelTV"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                tools:itemCount="1"
+                tools:listitem="@layout/user_liked_genre_list_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

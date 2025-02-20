@@ -8,22 +8,23 @@ import com.bumptech.glide.Glide
 import com.sougata.movieworld.R
 import com.sougata.movieworld.databinding.GenreListItemBinding
 import com.sougata.movieworld.home.clickHandlers.GenreListClickHandler
+import com.sougata.movieworld.models.Genre
 
-class GenreListAdapter(private val itemsList: List<String>) :
+class GenreListAdapter(private val itemsList: List<Genre>) :
     RecyclerView.Adapter<GenreListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: GenreListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(genre: String) {
+        fun bind(genre: Genre) {
 
-            this.binding.genreLabel.text = genre
+            this.binding.genreLabel.text = genre.name
 
             this.binding.parentLayout.setOnClickListener {
 
                 val clickHandler = GenreListClickHandler()
 
-                clickHandler.onGenreClick(genre, this.binding.parentLayout.findNavController())
+                clickHandler.onGenreClick(genre.name, this.binding.parentLayout.findNavController())
 
 
             }
@@ -73,7 +74,7 @@ class GenreListAdapter(private val itemsList: List<String>) :
 
         if (this.itemsList.isEmpty()) {
 
-            holder.bind("Loading")
+            holder.bind(Genre("Loading"))
             return
         }
 

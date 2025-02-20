@@ -8,7 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.CompoundButton
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
@@ -19,6 +20,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.snackbar.Snackbar
 import com.sougata.movieworld.MainActivity.Companion.MOVIE_RATINGS_MAP
 import com.sougata.movieworld.R
 import com.sougata.movieworld.database.DAO
@@ -171,57 +174,9 @@ class MovieBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
                 isChecked = isInWatchlist
 
-                setOnCheckedChangeListener { cb, checked ->
-                    if (SettingsFragment.LOAD_FAKE_DATA.value == true) {
-                        return@setOnCheckedChangeListener
-                    }
-                    if (checked) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            try {
-                                withContext(Dispatchers.IO) {
-                                    roomRepository.insertWatchlistMovie(
-                                        MyMovie(name, year, type, description, imageUrl, imdbId),
-                                        roomRepository.getActiveUserId()
-                                    )
-                                }
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Added to watchlist",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } catch (e: SQLiteException) {
-                                userNotFoundFlag = true
-                                cb.isChecked = false
-                                Toast.makeText(
-                                    requireContext(),
-                                    "No user found, add a user to add movies to watchlist",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                    } else {
-                        CoroutineScope(Dispatchers.IO).launch {
-
-                            if (!userNotFoundFlag) {
-
-                                roomRepository.deleteWatchlistMovie(imdbId)
-
-                                withContext(Dispatchers.Main) {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Removed from watchlist",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    delay(150) // To show the user that the checkbox had been un checked
-                                    dismiss()
-                                }
-                            }
-                            userNotFoundFlag = false
-                        }
-                    }
-
-                }
+                setOnCheckedChangeListener { checkBox, checkedState -> onCheckBoxClick(checkBox, checkedState) }
             }
+
 
             Log.d("FragmentBottomSheet", "onViewCreated")
         }
@@ -239,6 +194,59 @@ class MovieBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 putString("description", myMovie.description)
                 putString("imdbId", myMovie.imdbId)
 
+            }
+        }
+    }
+
+    private fun onCheckBoxClick(checkBox: CompoundButton, checkedState: Boolean) {
+
+        val alwaysWhite = ContextCompat.getColor(requireContext(), R.color.always_white)
+
+        if (SettingsFragment.LOAD_FAKE_DATA.value == true) {
+            return
+        }
+        if (checkedState) {
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    withContext(Dispatchers.IO) {
+                        roomRepository.insertWatchlistMovie(
+                            MyMovie(name, year, type, description, imageUrl, imdbId),
+                            roomRepository.getActiveUserId()
+                        )
+                    }
+
+                    Snackbar.make(requireView(), "Added to watchlist", Snackbar.LENGTH_SHORT)
+                        .setTextColor(alwaysWhite).show()
+
+                } catch (e: SQLiteException) {
+                    userNotFoundFlag = true
+                    checkBox.isChecked = false
+
+                    Snackbar.make(
+                        requireView(),
+                        "No user found, add a user to add movies to watchlist",
+                        Snackbar.LENGTH_SHORT
+                    ).setTextColor(alwaysWhite).show()
+
+                }
+            }
+        } else {
+            CoroutineScope(Dispatchers.IO).launch {
+
+                if (!userNotFoundFlag) {
+
+                    roomRepository.deleteWatchlistMovie(imdbId)
+
+                    withContext(Dispatchers.Main) {
+
+                        Snackbar.make(
+                            requireView(),
+                            "Removed from watchlist",
+                            Snackbar.LENGTH_SHORT
+                        ).setTextColor(alwaysWhite).show()
+                    }
+                }
+                userNotFoundFlag = false
             }
         }
     }

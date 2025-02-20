@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Custom Style for DatePickerDialog -->
     <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/green</item>
+        <item name="colorAccent">@color/violet</item>
         <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePicker</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/MyPositiveButton</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/MyNegativeButton</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/MyNeutralButton</item>
     </style>
 
-    <style name="TimePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/green</item>
+    <!-- Custom Style for DatePicker (inside DatePickerDialog) -->
+    <style name="MyDatePicker" parent="android:Widget.Material.DatePicker">
         <item name="android:textColorPrimary">@color/black</item>
-        <item name="android:buttonBarPositiveButtonStyle">@style/MyPositiveButton</item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/MyNegativeButton</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:dateTextAppearance">@style/MyDateTextAppearance</item>
     </style>
 
+    <!-- Custom Text Appearance for Date Numbers -->
+    <style name="MyDateTextAppearance" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Custom Button Styles for DatePickerDialog -->
     <style name="MyPositiveButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/black</item>
     </style>
@@ -22,4 +33,9 @@
     <style name="MyNegativeButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="MyNeutralButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

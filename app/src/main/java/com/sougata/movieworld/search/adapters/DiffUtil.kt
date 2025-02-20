@@ -1,9 +1,9 @@
-package com.sougata.movieworld.util
+package com.sougata.movieworld.search.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.sougata.movieworld.models.SearchHistory
 
-class SearchHistoryDiffUtil(
+class DiffUtil(
     private val oldItemsList: List<SearchHistory>,
     private val newItemsList: List<SearchHistory>
 ) : DiffUtil.Callback(){

@@ -1,4 +1,4 @@
-package com.sougata.movieworld.search
+package com.sougata.movieworld.search.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import com.sougata.movieworld.databinding.FragmentSearchBinding
 import com.sougata.movieworld.databinding.SearchSuggestionListItemBinding
 import com.sougata.movieworld.models.SearchHistory
 import com.sougata.movieworld.search.viewModels.SearchFragmentViewModel
-import com.sougata.movieworld.util.SearchHistoryDiffUtil
 
 class SearchSuggestionListAdapter(
     private var itemsList: List<SearchHistory>,
@@ -55,7 +54,7 @@ class SearchSuggestionListAdapter(
     }
 
     fun setData(newItemsList: List<SearchHistory>) {
-        val diffUtil = SearchHistoryDiffUtil(this.itemsList, newItemsList)
+        val diffUtil = DiffUtil(itemsList, newItemsList)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         this.itemsList = newItemsList
         diffResult.dispatchUpdatesTo(this)

@@ -41,17 +41,18 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.sougata.movieworld.profile.ProfileFragment"
+        android:name="com.sougata.movieworld.profile.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment_to_addUserFragment"
-            app:destination="@id/addUserFragment"
+            android:id="@+id/action_profileFragment_to_addEditUserFragment"
+            app:destination="@id/addEditUserFragment"
             app:enterAnim="@anim/popup_enter"
             app:exitAnim="@anim/popup_exit"
             app:popEnterAnim="@anim/popup_enter_back"
             app:popExitAnim="@anim/popup_exit_back" />
     </fragment>
+
     <fragment
         android:id="@+id/genreListFragment"
         android:name="com.sougata.movieworld.home.fragments.GenreListFragment"
@@ -65,25 +66,42 @@
             app:popEnterAnim="@anim/popup_enter_back"
             app:popExitAnim="@anim/popup_exit_back" />
     </fragment>
+
     <fragment
         android:id="@+id/anyMovieListFragment"
         android:name="com.sougata.movieworld.anyMovieList.AnyMovieListFragment"
         android:label="AnyMovieListFragment"
         tools:layout="@layout/fragment_any_movie_list" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.sougata.movieworld.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.sougata.movieworld.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
+
     <fragment
-        android:id="@+id/addUserFragment"
-        android:name="com.sougata.movieworld.profile.AddUserFragment"
-        android:label="AddUserFragment"
-        tools:layout="@layout/fragment_add_user" />
+        android:id="@+id/addEditUserFragment"
+        android:name="com.sougata.movieworld.profile.fragments.AddEditUserFragment"
+        android:label="AddEditUserFragment"
+        tools:layout="@layout/fragment_add_edit_user">
+        <action
+            android:id="@+id/action_addUserFragment_to_userLikedAddEditGenreListFragment"
+            app:destination="@id/userLikedAddEditGenreListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/userLikedAddEditGenreListFragment"
+        android:name="com.sougata.movieworld.profile.fragments.UserLikedAddEditGenreListFragment"
+        android:label="UserLikedAddEditGenreListFragment"
+        tools:layout="@layout/fragment_user_liked_add_edit_genre_list"/>
 
 </navigation>

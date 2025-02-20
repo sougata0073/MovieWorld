@@ -65,7 +65,7 @@ class AnyMovieListFragment : Fragment() {
         this.viewModelFactory = ViewModelFactory(this.repository)
 
         this.viewModel =
-            ViewModelProvider.create(
+            ViewModelProvider(
                 this,
                 this.viewModelFactory
             )[AnyMovieListViewModel::class.java]
