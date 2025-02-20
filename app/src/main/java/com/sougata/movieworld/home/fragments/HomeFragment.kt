@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sougata.movieworld.R
 import com.sougata.movieworld.databinding.FragmentHomeBinding
 import com.sougata.movieworld.home.recyclerViewAdapters.AllPopularListWrapperAdapter

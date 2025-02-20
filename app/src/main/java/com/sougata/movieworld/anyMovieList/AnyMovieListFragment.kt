@@ -1,7 +1,6 @@
 package com.sougata.movieworld.anyMovieList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,7 +85,7 @@ class AnyMovieListFragment : Fragment() {
             }
         }
 
-        this.binding.backBtn.setOnClickListener{ requireActivity().onBackPressedDispatcher.onBackPressed() }
+        this.binding.backBtn.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
 
         this.viewModel.loadMoviesByGenre(this.genre)
 
@@ -112,7 +111,9 @@ class AnyMovieListFragment : Fragment() {
         }
 
         SettingsFragment.LOAD_FAKE_DATA.observe(viewLifecycleOwner) {
-            if (it) { recyclerViewAdapter.changeData(this.viewModel.fakeMyMovieList) }
+            if (it) {
+                recyclerViewAdapter.changeData(this.viewModel.fakeMyMovieList)
+            }
         }
     }
 }

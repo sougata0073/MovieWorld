@@ -20,7 +20,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.snackbar.Snackbar
 import com.sougata.movieworld.MainActivity.Companion.MOVIE_RATINGS_MAP
 import com.sougata.movieworld.R
@@ -35,7 +34,6 @@ import com.sougata.movieworld.settings.SettingsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.sougata.movieworld.database.Repository as RoomRepository
@@ -174,7 +172,12 @@ class MovieBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
                 isChecked = isInWatchlist
 
-                setOnCheckedChangeListener { checkBox, checkedState -> onCheckBoxClick(checkBox, checkedState) }
+                setOnCheckedChangeListener { checkBox, checkedState ->
+                    onCheckBoxClick(
+                        checkBox,
+                        checkedState
+                    )
+                }
             }
 
 
