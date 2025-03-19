@@ -86,8 +86,8 @@ interface DAO {
     @Query("select count(id) from user_details")
     fun getUserCount(): Int
 
-    @Query("update user_details set is_active = 0")
-    suspend fun deactivateAllUsers()
+    @Query("update user_details set is_active = 0 where is_active = 1")
+    suspend fun deactivateAllActiveUsers()
 
     @Query("select * from user_details where is_active = 1 limit 1")
     suspend fun getActiveUser(): User
@@ -103,4 +103,26 @@ interface DAO {
     @Update
     suspend fun updateUser(user: User)
 
+    @Query("""
+        update user_details
+        set is_active = 0
+        where id != :userId
+    """)
+    suspend fun deactivateUserExceptThisId(userId: Int)
+
+    @Query("""
+        update user_details
+        set is_active = 1
+        where id = :userId
+    """)
+    suspend fun makeActiveThisUser(userId: Int)
+
+    @Query("""
+        delete from user_liked_genre_details
+        where user_id = :userId
+    """)
+    suspend fun deleteUserLikedGenresById(userId: Int)
+
+    @Delete
+    suspend fun deleteUser(user: User)
 }

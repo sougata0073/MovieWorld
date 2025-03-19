@@ -45,7 +45,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        buildConfig = true // important to generate buildconfig
+        buildConfig = true // important to generate buildconfig (Used to hide api key)
         dataBinding = true
     }
 }
@@ -106,7 +106,7 @@ dependencies {
     // Circle iamage view
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
-    // Glide
+    // Glid
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Shimmer effect

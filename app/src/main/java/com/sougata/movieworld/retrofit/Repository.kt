@@ -10,20 +10,20 @@ class Repository(private val movieService: MovieService) {
 
         Log.d("Retrofit", "API Call")
 
-        val movieResponse =
-            this.movieService.getMoviesByGenre(genre = genre).body()?.results ?: emptyList()
+        val result =
+            this.movieService.getMoviesByGenre(genre = genre).body()?.results?.map { MyMovie(it) }!!
 
-        return movieResponse.map { MyMovie(it) }
+        return result
 
     }
 
     suspend fun getMoviesByList(list: String): List<MyMovie> {
         Log.d("Retrofit", "API Call")
 
-        val movieResponse =
-            this.movieService.getMoviesByList(list = list).body()?.results ?: emptyList()
+        val result =
+            this.movieService.getMoviesByList(list = list).body()?.results?.map { MyMovie(it) }!!
 
-        return movieResponse.map { MyMovie(it) }
+        return result
     }
 
     suspend fun getMovieRatingByImdbId(imdbId: String): MovieRating {
@@ -36,7 +36,8 @@ class Repository(private val movieService: MovieService) {
     }
 
     suspend fun getMoviesByName(name: String): List<MyMovie> {
-        val movieResponse = this.movieService.getMoviesByName(name = name).body()?.results ?: emptyList()
+        val movieResponse =
+            this.movieService.getMoviesByName(name = name).body()?.results ?: emptyList()
 
         return movieResponse.map { MyMovie(it) }
     }

@@ -10,11 +10,11 @@ import com.sougata.movieworld.databinding.UserLikedGenreListItemBinding
 import com.sougata.movieworld.models.Genre
 import com.sougata.movieworld.profile.viewModels.UserLikedAddEditGenreListFragmentViewModel
 
-class UserLikedGenreListAdapter(
+class UserLikedAddEditGenreListAdapter(
     private var itemsList: List<Genre>,
     private val viewModel: UserLikedAddEditGenreListFragmentViewModel?
 ) :
-    RecyclerView.Adapter<UserLikedGenreListAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<UserLikedAddEditGenreListAdapter.MyViewHolder>() {
 
     constructor(itemsList: List<Genre>) : this(itemsList, null)
 
@@ -32,6 +32,13 @@ class UserLikedGenreListAdapter(
                 this.binding.selectedCB.apply {
                     setOnCheckedChangeListener(null)
                     isChecked = genre.isSelected
+
+                    // This for edit mode if previously selected then it will be added to this list
+                    // to totally update the final list
+                    if (isChecked) {
+                        viewModel?.selectedGenreList?.add(genre)
+                    }
+
                     setOnCheckedChangeListener { _, isChecked ->
 
                         val tempGenre = viewModel?.allGenreList?.value?.get(adapterPosition)
@@ -41,7 +48,14 @@ class UserLikedGenreListAdapter(
                             viewModel?.selectedGenreList?.add(tempGenre ?: Genre(""))
                         } else {
                             tempGenre?.isSelected = false
-                            viewModel?.selectedGenreList?.remove(tempGenre)
+
+                            // This below line works for both edit and normal mode
+                            // suppose user want to delete a genre from the list in edit mode
+                            // then normal remove() function will not work because
+                            // items inside 'selectedGenreList' may be practically same
+                            // but they are not same objects so, normal remove operation will fail
+                            // so this method below will compare by names which is equal for the two lists
+                            viewModel?.selectedGenreList?.removeIf { it.name == tempGenre?.name }
                         }
 
                     }
@@ -91,8 +105,9 @@ class UserLikedGenreListAdapter(
     }
 
     fun setData(newItemsList: List<Genre>) {
-        val diffUtil = DiffUtil(itemsList, newItemsList)
-        val diffResult = DiffUtil.calculateDiff(diffUtil)
+        val userLikedAddEditGenreListTypeDiffUtil =
+            UserLikedAddEditGenreListTypeDiffUtil(itemsList, newItemsList)
+        val diffResult = DiffUtil.calculateDiff(userLikedAddEditGenreListTypeDiffUtil)
         this.itemsList = newItemsList
         diffResult.dispatchUpdatesTo(this)
     }

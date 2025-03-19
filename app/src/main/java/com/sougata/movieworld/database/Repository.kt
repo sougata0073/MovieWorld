@@ -82,8 +82,8 @@ class Repository(private val dao: DAO) {
         return this.dao.getUserCount()
     }
 
-    suspend fun deactivateAllUsers() {
-        this.dao.deactivateAllUsers()
+    suspend fun deactivateAllActiveUsers() {
+        this.dao.deactivateAllActiveUsers()
     }
 
     suspend fun getActiveUser(): User {
@@ -98,4 +98,19 @@ class Repository(private val dao: DAO) {
         this.dao.updateUser(user)
     }
 
+    suspend fun deactivateUserExceptThisId(userId: Int) {
+        this.dao.deactivateUserExceptThisId(userId)
+    }
+
+    suspend fun makeActiveThisUser(userId: Int) {
+        this.dao.makeActiveThisUser(userId)
+    }
+
+    suspend fun deleteUserLikedGenresById(userId: Int) {
+        this.dao.deleteUserLikedGenresById(userId)
+    }
+
+    suspend fun deleteUser(user: User) {
+        this.dao.deleteUser(user)
+    }
 }

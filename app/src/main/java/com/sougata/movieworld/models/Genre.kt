@@ -40,4 +40,8 @@ class Genre(
 
     @Ignore
     constructor(name: String) : this(0, name, 0)
+
+    override fun toString(): String {
+        return "$id, $name, $userId"
+    }
 }

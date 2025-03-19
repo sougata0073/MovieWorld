@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sougata.movieworld.profile.viewModels.AddEditUserFragmentViewModel
 import com.sougata.movieworld.profile.viewModels.ProfileFragmentViewModel
+import com.sougata.movieworld.profile.viewModels.SwitchUserFragmentViewModel
 import com.sougata.movieworld.profile.viewModels.UserLikedAddEditGenreListFragmentViewModel
 import com.sougata.movieworld.watchList.viewModels.WatchListFragmentViewModel
 
@@ -26,6 +27,9 @@ class ViewModelFactory(private val repository: Repository) : ViewModelProvider.F
 
             modelClass.isAssignableFrom(AddEditUserFragmentViewModel::class.java) ->
                 AddEditUserFragmentViewModel(this.repository) as T
+
+            modelClass.isAssignableFrom(SwitchUserFragmentViewModel::class.java) ->
+                SwitchUserFragmentViewModel(this.repository) as T
 
 
 

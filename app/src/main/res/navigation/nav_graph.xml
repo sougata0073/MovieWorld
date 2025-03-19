@@ -51,6 +51,20 @@
             app:exitAnim="@anim/popup_exit"
             app:popEnterAnim="@anim/popup_enter_back"
             app:popExitAnim="@anim/popup_exit_back" />
+        <action
+            android:id="@+id/action_profileFragment_to_switchUserFragment"
+            app:destination="@id/switchUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileFragment_to_userLikedAddEditGenreListFragment"
+            app:destination="@id/userLikedAddEditGenreListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -103,5 +117,10 @@
         android:name="com.sougata.movieworld.profile.fragments.UserLikedAddEditGenreListFragment"
         android:label="UserLikedAddEditGenreListFragment"
         tools:layout="@layout/fragment_user_liked_add_edit_genre_list"/>
+    <fragment
+        android:id="@+id/switchUserFragment"
+        tools:layout="@layout/fragment_switch_user"
+        android:name="com.sougata.movieworld.profile.fragments.SwitchUserFragment"
+        android:label="SwitchUserFragment" />
 
 </navigation>

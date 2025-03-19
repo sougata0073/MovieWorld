@@ -79,10 +79,10 @@ object InputUtil {
         }
     }
 
-    fun getRandomImageUrl(): String {
-        val num = Random.nextInt(1, 101)
+    fun getRandomImageUrl(width: Int = 300, height: Int = 300): String {
+        val num = Random.nextInt(1, 1001)
 
-        return "https://picsum.photos/id/$num/300/300"
+        return "https://picsum.photos/id/$num/$width/$height"
     }
 
     fun getFakeMovieList(): List<MyMovie> {

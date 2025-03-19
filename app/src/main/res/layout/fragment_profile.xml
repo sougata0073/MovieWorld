@@ -43,6 +43,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{viewModel::onSwitchUserClicked}"
                 android:padding="5dp"
                 android:text="Switch user"
                 android:textColor="@color/black"
@@ -222,6 +223,22 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileDetailsLayout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addGenreBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:onClick="@{viewModel::onAddGenreClicked}"
+                android:text="Add"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/interestedInLabelTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/interestedInLabelTV" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/interestedGenreRV"

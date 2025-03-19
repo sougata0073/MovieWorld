@@ -14,12 +14,16 @@ import kotlinx.coroutines.withContext
 
 class UserLikedAddEditGenreListFragmentViewModel(private val repository: Repository) : ViewModel() {
 
+    // For normal mode
     val allGenreList =
         MutableLiveData(InputUtil.getAllGenresList())
 
     val selectedGenreList = arrayListOf<Genre>()
 
     val isUserAdded = MutableLiveData(false)
+
+    // For edit mode
+    val activeUserLikedGenres = this.repository.getActiveUserLikedGenreList()
 
     fun insertUser(user: User) {
 
@@ -29,7 +33,7 @@ class UserLikedAddEditGenreListFragmentViewModel(private val repository: Reposit
                 delay(200)
             }
 
-            repository.deactivateAllUsers()
+            repository.deactivateAllActiveUsers()
 
             repository.insertUser(user)
 
@@ -44,5 +48,19 @@ class UserLikedAddEditGenreListFragmentViewModel(private val repository: Reposit
             isUserAdded.postValue(true)
         }
 
+    }
+
+    fun updateUserLikedGenreList() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val activeUserId = repository.getActiveUser().id
+
+            repository.deleteUserLikedGenresById(activeUserId)
+
+            for (genre in selectedGenreList) {
+                repository.insertUserLikedGenre(
+                    Genre(0, genre.name, activeUserId)
+                )
+            }
+        }
     }
 }

@@ -83,6 +83,7 @@ class AddEditUserFragment : Fragment() {
             this.viewModel.email.value = this.email
             this.viewModel.country.value = this.country
             this.viewModel.birthday.value = this.birthday
+            this.binding.profileHeading.text = "Edit Profile"
             this.binding.nextBtn.apply {
                 text = "Save"
                 setOnClickListener {
@@ -109,6 +110,7 @@ class AddEditUserFragment : Fragment() {
                 }
             }
         } else {
+            this.binding.profileHeading.text = "Add User"
             this.binding.nextBtn.apply {
                 text = "Next"
                 setOnClickListener {

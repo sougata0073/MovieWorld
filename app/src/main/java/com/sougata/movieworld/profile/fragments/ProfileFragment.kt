@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.bumptech.glide.Glide
 import com.sougata.movieworld.R
 import com.sougata.movieworld.database.DAO
 import com.sougata.movieworld.database.MyDatabase
 import com.sougata.movieworld.database.Repository
 import com.sougata.movieworld.database.ViewModelFactory
 import com.sougata.movieworld.databinding.FragmentProfileBinding
-import com.sougata.movieworld.profile.adapters.UserLikedGenreListAdapter
+import com.sougata.movieworld.profile.adapters.UserLikedAddEditGenreListAdapter
 import com.sougata.movieworld.profile.viewModels.ProfileFragmentViewModel
+import com.sougata.movieworld.util.InputUtil
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 
 class ProfileFragment : Fragment() {
@@ -30,7 +32,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var repository: Repository
 
-    private lateinit var interestedGenreListAdapter: UserLikedGenreListAdapter
+    private lateinit var interestedGenreListAdapter: UserLikedAddEditGenreListAdapter
 
     private var id: Int = 1
     private lateinit var name: String
@@ -64,7 +66,7 @@ class ProfileFragment : Fragment() {
             ViewModelFactory(this.repository)
         )[ProfileFragmentViewModel::class.java]
 
-        this.interestedGenreListAdapter = UserLikedGenreListAdapter(emptyList())
+        this.interestedGenreListAdapter = UserLikedAddEditGenreListAdapter(emptyList())
 
         this.binding.interestedGenreRV.apply {
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
@@ -78,6 +80,12 @@ class ProfileFragment : Fragment() {
 
 
         this.binding.viewModel = this.viewModel
+
+        Glide.with(requireContext())
+            .load(InputUtil.getRandomImageUrl(500, 500))
+            .placeholder(R.drawable.ic_profile)
+            .error(R.drawable.ic_profile)
+            .into(this.binding.profileIV)
 
         this.viewModel.activeUser.observe(this.viewLifecycleOwner) {
 

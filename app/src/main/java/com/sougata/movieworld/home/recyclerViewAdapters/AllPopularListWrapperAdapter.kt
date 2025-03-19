@@ -27,29 +27,33 @@ class AllPopularListWrapperAdapter(
 
         fun bind(popularList: PopularList) {
 
-                binding.headingLabel.text = popularList.label
+            binding.headingLabel.text = popularList.label
 
-                childAdapter = PopularMovieListAdapter(
-                    // imdbId passed for diff util if not passed it will give error
-                    List(10) { MyMovie(isShimmer = true, imdbId = "") },
-                    fragmentManager
+            childAdapter = PopularMovieListAdapter(
+                // imdbId passed for diff util if not passed it will give error
+                List(10) { MyMovie(isShimmer = true, imdbId = "") },
+                fragmentManager
+            )
+
+            binding.mostPopularMoviesRV.apply {
+
+                layoutManager = LinearLayoutManager(
+                    binding.mostPopularMoviesRV.context, LinearLayoutManager.HORIZONTAL, false
                 )
 
-                binding.mostPopularMoviesRV.apply {
-
-                    layoutManager = LinearLayoutManager(
-                        binding.mostPopularMoviesRV.context, LinearLayoutManager.HORIZONTAL, false
-                    )
-
-                    adapter = ScaleInAnimationAdapter(childAdapter).apply {
-                        setFirstOnly(false)
-                        setDuration(80)
-                    }
+                adapter = ScaleInAnimationAdapter(childAdapter).apply {
+                    setFirstOnly(false)
+                    setDuration(80)
                 }
+            }
 
             viewModel.loadMoviesByList(adapterPosition)
 
-            popularList.liveData.observe(lifecycleOwner) { this.childAdapter.setData(it) }
+            popularList.liveData.observe(lifecycleOwner) {
+                if (it != null) {
+                    this.childAdapter.setData(it)
+                }
+            }
 
             SettingsFragment.LOAD_FAKE_DATA.observe(lifecycleOwner) {
                 if (it) {
